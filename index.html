@@ -1,14 +1,196 @@
 <!DOCTYPE html>
-<html lang="en-US">
-	<head>
-		<title>Garry's Mod Loading Screen</title>
-		<meta charset="utf-8">
-		<link rel="icon" type="image/png" href="img/icon.png">
-	</head>
-	<body>
-		<main>
-            <h1>Hello There!</h1>
-            <p>Testing...1...2...3</p>
-		</main>
-	</body>
+<html>
+    <head>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+        <script>
+			
+				/*	  ______  __    __       ___      .__   __.   _______  _______ 
+					 /      ||  |  |  |     /   \     |  \ |  |  /  _____||   ____|
+					|  ,----'|  |__|  |    /  ^  \    |   \|  | |  |  __  |  |__   
+					|  |     |   __   |   /  /_\  \   |  . `  | |  | |_ | |   __|  
+					|  `----.|  |  |  |  /  _____  \  |  |\   | |  |__| | |  |____ 
+					 \______||__|  |__| /__/     \__\ |__| \__|  \______| |_______|
+																				   
+					  ______   .__   __.  __      ____    ____ 
+					 /  __  \  |  \ |  | |  |     \   \  /   / 
+					|  |  |  | |   \|  | |  |      \   \/   /  
+					|  |  |  | |  . `  | |  |       \_    _/   
+					|  `--'  | |  |\   | |  `----.    |  |     
+					 \______/  |__| \__| |_______|    |__|     
+															   
+					 __    __   _______ .______      _______ 
+					|  |  |  | |   ____||   _  \    |   ____|
+					|  |__|  | |  |__   |  |_)  |   |  |__   
+					|   __   | |   __|  |      /    |   __|  
+					|  |  |  | |  |____ |  |\  \---.|  |____ 
+					|__|  |__| |_______|| _| `.____||_______|
+					
+						
+					  ╔════════════════════════════════════════════════════════════════════════════════════╗
+					/*║*/																		    	 /*║*/
+					/*║*/			/*Site Header*/														 /*║*/
+					/*║*/		var header="Loading Files..";											 /*║*/
+					/*║*/																				 /*║*/
+					/*║*/			/*Rules*/															 /*║*/
+					/*║*/		var rules=[																 /*║*/
+					/*║*/		"Bugusing u. Hacking sind verboten",									 /*║*/
+					/*║*/		"Beleidigungen sind untersagt",											 /*║*/
+					/*║*/		"Kein Random-Killen",													 /*║*/
+					/*║*/		"Kein Ghosten",															 /*║*/
+					/*║*/		"Spammen ist untersagt"];												 /*║*/
+					/*║*/																				 /*║*/
+					/*║*/		var backgroundimagescount=14;											 /*║*/
+					/*║*/																				 /*║*/
+					/*║*/			/*Footer*/															 /*║*/
+					/*║*/		var footer="Teammitglieder dürfen Bans aussprechen";					 /*║*/
+					/*║*/																				 /*║*/
+					/*╚════════════════════════════════════════════════════════════════════════════════════╝
+				
+			
+					/*	 _______.___________.  ______   .______   
+						/       |           | /  __  \  |   _  \  
+					   |   (----`---|  |----`|  |  |  | |  |_)  | 
+						\   \       |  |     |  |  |  | |   ___/  
+					.----)   |      |  |     |  `--'  | |  |      
+					|_______/       |__|      \______/  | _|      
+																  
+					.__   __.   ______   ____    __    ____ 
+					|  \ |  |  /  __  \  \   \  /  \  /   / 
+					|   \|  | |  |  |  |  \   \/    \/   /  
+					|  . `  | |  |  |  |   \            /   
+					|  |\   | |  `--'  |    \    /\    /    
+					|__| \__|  \______/      \__/  \__/     
+															
+					  ______  __    __       ___      .__   __.   _______  __  .__   __.   _______ 
+					 /      ||  |  |  |     /   \     |  \ |  |  /  _____||  | |  \ |  |  /  _____|
+					|  ,----'|  |__|  |    /  ^  \    |   \|  | |  |  __  |  | |   \|  | |  |  __  
+					|  |     |   __   |   /  /_\  \   |  . `  | |  | |_ | |  | |  . `  | |  | |_ | 
+					|  `----.|  |  |  |  /  _____  \  |  |\   | |  |__| | |  | |  |\   | |  |__| | 
+					 \______||__|  |__| /__/     \__\ |__| \__|  \______| |__| |__| \__|  \______| 
+				*/
+				
+			
+			
+            this.progress=0.0;
+            this.filesNeeded=0;
+            this.filesTotal=1; 
+            function initializeGMod(){
+				updateBG();
+				updateRules();
+				updateHeaderFooter();
+                updateProgress();
+            }
+			function updateHeaderFooter(){
+				document.getElementById("footer").innerHTML=footer;
+				document.getElementById("header").innerHTML=header;
+			}
+			function updateRules(){
+				var ruleSec=document.getElementById("rule-list");
+				for(i=0;i<rules.length;i++){
+					var rule=rules[i];
+					var node=document.createElement("li");
+					var textnode=document.createTextNode(rule);
+					node.appendChild(textnode);
+					ruleSec.appendChild(node)
+				}
+			}
+			function updateBG(){
+				document.body.style.backgroundImage="url(assets/img/bgs/bg-"+getRandomPercentageInteger(backgroundimagescount)+".jpg)";
+			}
+			function getRandomPercentageInteger(max){
+				var percentage=(100/max)/100;
+				var random=(Math.floor(Math.random()*100))/100;
+				var perc=0;
+				var result=1;
+				for(i=1;i<max+1;i++){
+					perc+=percentage;
+					if(random<perc&&random>perc-percentage){
+						result=i;
+						break;
+					}
+				}
+				return result;
+			}
+            function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode){
+                setServerInfo(servername, mapname, maxplayers, gamemode);
+            }
+            function SetFilesTotal(numFiles){
+                this.filesTotal=Math.max(0, numFiles);
+            }
+            function SetStatusChanged(status){
+                onStatusChange(status);
+            }
+            function SetFilesNeeded(numFiles){
+                this.filesNeeded=Math.max(0, numFiles);
+            }
+            function DownloadingFile(fileName){
+                this.filesNeeded=Math.max(0, this.filesNeeded-1);
+                updateProgress();
+                var status='Downloading '+filePath+'...';
+                onStatusChanged(status);
+            }   
+            function onStatusChange(status){
+                if(status==='Sending client info...'){
+                    this.filesNeeded=0;   
+                    document.getElementById("status").innerHTML="";
+                    updateProgress();
+                }else{
+                    document.getElementById("status").innerHTML=status;
+                }
+            }
+            function setServerInfo(serverName, mapName, maxPlayers, gamemode){
+                document.getElementById("mappreview").src='http://image.www.gametracker.com/images/maps/160x120/garrysmod/' + mapName + '.jpg';
+                document.getElementById("mapname").innerHTML=mapName;
+                document.getElementById("servername").innerHTML=serverName;
+                document.getElementById("slots").innerHTML=maxPlayers + " Spieler Slots";
+                document.getElementById("gamemode").innerHTML=gamemode;
+            }
+            function updateProgress(){
+                var filesRemaining=Math.max(0, this.filesTotal-this.filesNeeded), progress=(this.filesTotal>0)?(filesRemaining/this.filesTotal):1;
+                this.progress=Math.round(progress*100);
+                document.getElementById("loadingbar").style.width=this.progress+'%';
+            }
+        </script>
+    </head>
+    <body onload="initializeGMod();">
+        <center>
+            <div class="loading-body">
+                <h1 id="header" class="header">{%SERVERNAME%}</h1>
+                <h4 style="color: white; margin-top: 5px; font-family: sans-serif;" id="servername">{%SERVERMOTD%}</h4>
+                <div class="rules">
+                    <div class="row">
+						<div class="col s6">
+							<h3 class="rules-header">Server Info</h3>   
+							<div class="rules-divider"></div>
+							<div class="row">
+								<div class="col s6">
+									<img src="assets/img/servericon.png" style="width: 100%; height: 100%;" id="mappreview">
+								</div>
+								<div class="col s6 info">
+									<br>
+									<a class="mapname" id="mapname">{%MAPNAME%}</a><br>
+									<a class="mapname" id="slots">{%SLOTS%}</a><br><br>
+									<a class="mapname" id="gamemode">{%MAPNAME%}</a>
+								</div>
+							</div>    
+						</div>
+						<div class="col s6">
+							<h3 class="rules-header">Regeln</h3>   
+							<div class="rules-divider"></div>
+							<ul id="rule-list" class="rules-list"></ul>
+						</div>    
+					</div>
+					<div class="col text-footer">
+						<div class="rules-divider"></div>
+						<h4 id="footer" class="rules-header"></h4>
+					</div>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" id="loadingbar" style="width: 100%;"></div>
+                </div>
+                <div class="progress-text" id="status">Downloading ...</div>
+            </div>
+        </center>
+    </body>
 </html>
